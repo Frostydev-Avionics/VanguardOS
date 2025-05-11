@@ -1,6 +1,11 @@
 #pragma once
 
 #include "Arduino.h"
+#include <SdFat.h>
+
+#include "Sensors/Impl/MAX10S.h"
+#include "Sensors/Impl/LPS22.h"
+#include "Sensors/Impl/LSM303.h"
 
 #define SD_SPI_SPEED SD_SCK_MHZ(50)
 

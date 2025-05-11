@@ -1,21 +1,21 @@
 {
     "build": {
+        "arduino": {
+            "variant_h": "variant_Vanguard.h"
+        },
         "core": "stm32",
         "cpu": "cortex-m7",
         "extra_flags": "-DSTM32H7 -DSTM32H7xx -DSTM32H743xx -DARDUINO_VANGUARD",
-        "f_cpu": "400000000L",
-        "mcu": "stm32h743vitx",
+        "f_cpu": "480000000L",
+        "mcu": "stm32h743vit6",
         "product_line": "STM32H743xx",
         "variant": "VANGUARD"
     },
     "connectivity": [],
-    "debug": {
-        "default_tools": [
-        "stlink"
-        ],
-        "jlink_device": "STM32H743ZI",
+        "debug": {
+        "jlink_device": "STM32H743VI",
         "openocd_target": "stm32h7x",
-        "svd_path": "STM32H753.svd"
+        "svd_path": "STM32H743.svd"
     },
     "frameworks": [
         "arduino",
@@ -23,7 +23,7 @@
         "stm32cube",
         "zephyr"
     ],
-    "name": "ST Nucleo H743VI",
+    "name": "VANGUARD Flight Computer",
     "upload": {
         "maximum_ram_size": 524288,
         "maximum_size": 2097152,
@@ -37,5 +37,5 @@
         ]
     },
     "url": "https://www.st.com/en/evaluation-tools/nucleo-h753zi.html",
-    "vendor": "ST"
+    "vendor": "Frosty Development"
 }
