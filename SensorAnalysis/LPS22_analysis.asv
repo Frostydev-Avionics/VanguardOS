@@ -1,0 +1,59 @@
+%% WPI High Power Model Rocket MQP
+% Author: Daniel Pearson
+% Version: 2/16/2025
+
+clear variables; close all; clc;
+
+rawLPS22 = readtable('./data/LPS22/LPS22_2330_15_2_2025.csv');
+
+% Extract Timestamp
+time = rawLPS22.timestamp / 1000;
+
+% Sensor Readings
+pressure = rawLPS22.pressure(1:100) * 100; % [Pa] Pressure
+altitude = rawLPS22.altitude(1:100); % [m] Altitude
+temperature = rawLPS22.temperature(1:100); % [C] Temperature
+
+%% Plot Readings
+figure('Name', 'Altitude');
+plot(time, altitude, 'DisplayName', 'Altitude');
+grid on;
+title('Altitude');
+xlabel('Time (s)');
+ylabel('Altitude (m)');
+legend()
+
+figure('Name', 'Pressure');
+plot(time, pressure, 'DisplayName', 'Pressure');
+grid on;
+title('Pressure');
+xlabel('Time (s)');
+ylabel('Pressure (hPa)');
+legend();
+
+%% Calculate Sensor Error
+% Root Mean Squared Error (RMS)
+RMS = std(pressure); % [Pa]
+
+%% Gaussian Distribution
+% Calculate Deviation
+dev = pressure - mean(pressure);
+
+% Fit Probability Density Function
+pd = fitdist(dev, 'Normal');
+
+% Bounds
+distRange = linspace(min(pressure), max(pressure), 100);
+
+pd = pdf(pd, distRange);
+
+% Plot Gaussian Distribution
+figure('Name', 'LPS22 Error Distribution');
+hold on;
+histogram(dev, 'Normalization', 'pdf', 'FaceAlpha', 0.5, 'DisplayName', 'Pressure Error');
+% plot(distRange, pd, 'r', 'LineWidth', 2, 'DisplayName', 'Fit');
+hold off;
+grid on;
+xlabel('Pressure Error (Pa)');
+ylabel('Probability Density');
+legend();
