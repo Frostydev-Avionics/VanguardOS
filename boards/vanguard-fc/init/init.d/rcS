@@ -1,0 +1,6 @@
+echo "-----------------------------------"
+echo "RC_SCRIPT_RUNNING"
+echo "-----------------------------------"
+
+# Attempt to start telnetd without logging to a file first
+telnetd &
