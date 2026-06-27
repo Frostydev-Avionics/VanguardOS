@@ -88,6 +88,10 @@ if(CONFIG_FS_ROMFS)
   list(APPEND SRCS stm32_romfs_initialize.c)
 endif()
 
+if(CONFIG_MMCSD)
+  list(APPEND SRCS stm32_mmcsd.c)
+endif()
+
 target_sources(board PRIVATE ${SRCS})
 
 set_property(GLOBAL PROPERTY LD_SCRIPT "${NUTTX_BOARD_DIR}/scripts/flash.ld")

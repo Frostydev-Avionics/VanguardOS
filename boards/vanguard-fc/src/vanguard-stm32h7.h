@@ -78,6 +78,9 @@
                     GPIO_OUTPUT_SET | GPIO_PORTF | GPIO_PIN3)
 #define GPIO_INT1  (GPIO_INPUT | GPIO_FLOAT | GPIO_PORTE | GPIO_PIN3)
 
+#define GPIO_MMCSD_CS (GPIO_OUTPUT | GPIO_PUSHPULL | GPIO_SPEED_50MHz | \
+                       GPIO_OUTPUT_SET | GPIO_PORTA | GPIO_PIN4)
+
 /* PWM **********************************************************************/
 
 #if defined(CONFIG_STM32H7_TIM1_PWM)
@@ -153,6 +156,18 @@ int stm32_usbhost_initialize(void);
 
 #ifdef CONFIG_STM32H7_SPI
 void stm32_spidev_initialize(void);
+#endif
+
+/****************************************************************************
+ * Name: stm32_mmcsd_spi_initialize
+ *
+ * Description:
+ *   Initialize SPI-based MMC/SD card support
+ *
+ ****************************************************************************/
+
+#ifdef CONFIG_MMCSD_SPI
+int stm32_mmcsd_spi_initialize(int minor);
 #endif
 
 /****************************************************************************

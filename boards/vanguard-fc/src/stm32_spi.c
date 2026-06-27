@@ -123,11 +123,27 @@ void stm32_spi1select(struct spi_dev_s *dev,
 {
   spiinfo("devid: %08lx CS: %s\n",
           (unsigned long)devid, selected ? "assert" : "de-assert");
+
+  if (devid == SPIDEV_MMCSD(0))
+    {
+      stm32_gpiowrite(GPIO_MMCSD_CS, !selected);
+    }
 }
 
 uint8_t stm32_spi1status(struct spi_dev_s *dev, uint32_t devid)
 {
+  if (devid == SPIDEV_MMCSD(0))
+    {
+      return SPI_STATUS_PRESENT;
+    }
+
   return 0;
+}
+
+int stm32_spi1register(struct spi_dev_s *dev, spi_mediachange_t callback, void *arg) {
+  spiinfo("Registering callback\n");
+
+  return OK;
 }
 #endif
 

@@ -219,16 +219,13 @@ int stm32_bringup(void)
     }
 #endif
 
-#ifdef HAVE_SDIO
-  /* Initialize the SDIO block driver */
-
-  ret = stm32_sdio_initialize();
+#ifdef CONFIG_MMCSD_SPI
+  ret = stm32_mmcsd_spi_initialize(0);
   if (ret < 0)
     {
-      syslog(LOG_ERR,
-             "ERROR: Failed to initialize MMC/SD driver: %d\n", ret);
+      syslog(LOG_ERR, "ERROR: Failed to initialize MMC/SD driver: %d\n", ret);
     }
-#endif /* HAVE_SDIO */
+#endif
 
   /* Note: USB composite device (CDC/ACM + CDC/ECM) is initialized via
    * boardctl(BOARDIOC_USBDEV_CONTROL) which calls board_composite_initialize()
