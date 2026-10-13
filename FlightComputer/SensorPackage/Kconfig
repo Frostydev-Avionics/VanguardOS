@@ -1,6 +1,6 @@
-config FLIGHTCOMPUTER_SENSORPACKAGE
-        tristate "Flight Computer Sensor Package"
-        default y
+menuconfig FLIGHTCOMPUTER_SENSORPACKAGE
+        bool "Flight Computer Sensor Package"
+        default n
         ---help---
                 Enable the Flight Computer
 
@@ -14,7 +14,7 @@ config FLIGHTCOMPUTER_SENSORPACKAGE_PROGNAME
                 program is installed.
 
 config FLIGHTCOMPUTER_SENSORPACKAGE_PRIORITY
-        int "Sensosr Package task priority"
+        int "Sensor Package task priority"
         default 100
 
 config FLIGHTCOMPUTER_SENSORPACKAGE_STACKSIZE

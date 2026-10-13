@@ -1,6 +1,11 @@
 echo "-----------------------------------"
-echo "RC_SCRIPT_RUNNING"
+echo "RC_SCRIPT_RUNNING" > /dev/log
 echo "-----------------------------------"
 
-# Attempt to start telnetd without logging to a file first
-telnetd &
+# Wait for network to be ready before binding telnet
+sleep 2
+ifconfig eth0 10.42.0.2 netmask 255.255.255.0
+
+telnetd
+
+echo "Telnet started!"

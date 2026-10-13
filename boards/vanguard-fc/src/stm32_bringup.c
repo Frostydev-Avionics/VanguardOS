@@ -136,16 +136,16 @@ int stm32_bringup(void)
 
   UNUSED(ret);
 
-#ifdef CONFIG_FS_ROMFS
-  /* Register and Mount ROMFS */
-  ret = stm32_romfs_initialize();
-  if (ret < 0) {
-    syslog(LOG_ERR, "ERROR: Failed to register ROMFS: %d\n", ret);
-  } else {
-    syslog(LOG_INFO, "ROMFS mounted at /etc.\n");
-  }
-
-#endif
+// #ifdef CONFIG_FS_ROMFS
+//   /* Register and Mount ROMFS */
+//   ret = stm32_romfs_initialize();
+//   if (ret < 0) {
+//     syslog(LOG_ERR, "ERROR: Failed to register ROMFS: %d\n", ret);
+//   } else {
+//     syslog(LOG_INFO, "ROMFS mounted at /etc.\n");
+//   }
+//
+// #endif
 
 #if defined(CONFIG_I2C) && defined(CONFIG_SYSTEM_I2CTOOL)
   stm32_i2ctool();

@@ -1,0 +1,31 @@
+#
+# For a description of the syntax of this file, see the Kconfig scripting
+# language documentation.
+#
+
+menuconfig FLIGHTCOMPUTER_MAIN
+    bool "Main Flight Computer Application"
+    default n
+    ---help---
+        Enable the main Flight Computer application entry point. This
+        application is responsible for initializing the system and
+        starting all other flight tasks.
+
+if FLIGHTCOMPUTER_MAIN
+
+config FLIGHTCOMPUTER_MAIN_PROGNAME
+    string "Program name"
+    default "FlightComputer_main"
+    ---help---
+        This is the name of the program that will be used when the NSH ELF
+        program is installed.
+
+config FLIGHTCOMPUTER_MAIN_PRIORITY
+    int "Main task priority"
+    default 100
+
+config FLIGHTCOMPUTER_MAIN_STACKSIZE
+    int "Main task stack size"
+    default 2048
+
+endif

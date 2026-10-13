@@ -1,5 +1,5 @@
-config FLIGHTCOMPUTER_STATEMACHINE
-        tristate "Flight Computer State Machine"
+menuconfig FLIGHTCOMPUTER_STATEMACHINE
+        bool "Flight Computer State Machine"
         default n
         ---help---
                 Enable the Flight Computer
